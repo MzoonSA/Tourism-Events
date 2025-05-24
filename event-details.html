@@ -58,7 +58,7 @@
     <section id="eventDetails">
       <div class="container">
         <div class="row">
-          <!-- Details Left -->
+          <!-- ***** Details Left ***** -->
           <div class="col-lg-6 col-md-6 col-xs-12">
             <div class="left-text-content">
               <div class="section-heading">
@@ -78,7 +78,7 @@
           </div>
         </div>
 
-        <!-- Map -->
+        <!-- ***** Map ***** -->
         <div class="map-wrapper">
           <div class="map-container">
             <iframe
@@ -99,6 +99,26 @@
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- ***** Reviews *****-->
+    <section id="eventDetailsReview">
+      <div class="section-heading">
+        <h3>Reviews</h3>
+      </div>
+
+      <div id="reviewsList">
+        <!-- Reviews appear here -->
+      </div>
+
+      <form id="reviewForm">
+        <textarea
+          id="reviewInput"
+          placeholder="Write your review..."
+          required
+        ></textarea>
+        <button type="submit">Submit Review</button>
+      </form>
     </section>
 
     <!-- jQuery -->
@@ -160,6 +180,23 @@
             $("#portfolio").fadeTo(50, 1);
           }, 500);
         });
+      });
+    </script>
+    <script>
+      const reviewForm = document.getElementById("reviewForm");
+      const reviewInput = document.getElementById("reviewInput");
+      const reviewsList = document.getElementById("reviewsList");
+
+      reviewForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const review = reviewInput.value.trim();
+        if (review) {
+          const reviewBox = document.createElement("div");
+          reviewBox.className = "review-box";
+          reviewBox.textContent = review;
+          reviewsList.prepend(reviewBox);
+          reviewInput.value = "";
+        }
       });
     </script>
   </body>
