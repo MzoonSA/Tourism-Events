@@ -199,3 +199,105 @@
   </script>
 </body>
 </html>
+<!-- booking.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Booking Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f4f3fa; /* Light background */
+    }
+
+    .confirm-btn, .submit-btn {
+      background-color: #6A0DAD; /* Purple theme */
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .confirm-btn:hover, .submit-btn:hover {
+      background-color: #003366; /* Dark blue on hover */
+    }
+
+    #payment-form {
+      display: none;
+      margin-top: 30px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 320px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .success-message {
+      margin-top: 20px;
+      color: #6A0DAD; /* Purple message color */
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Confirm Your Booking</h2>
+
+  <!-- Button to show the payment form -->
+  <button onclick="showPaymentForm()" class="confirm-btn">Confirm Booking</button>
+
+  <!-- Payment form section -->
+  <div id="payment-form">
+    <h3>Payment Information</h3>
+
+    <label>Card Number:</label>
+    <input type="text" placeholder="1234 5678 9012 3456">
+
+    <label>Expiration Date:</label>
+    <input type="text" placeholder="MM/YY">
+
+    <label>CVV:</label>
+    <input type="text" placeholder="123">
+
+    <br><br>
+    <!-- Button to submit payment -->
+    <button class="submit-btn" onclick="submitBooking()">Submit</button>
+
+    <!-- Success message (initially hidden) -->
+    <p id="success-msg" class="success-message" style="display: none;">Booking confirmed successfully!</p>
+  </div>
+
+  <script>
+    // Function to show the payment form
+    function showPaymentForm() {
+      document.getElementById('payment-form').style.display = 'block';
+    }
+
+    // Function to show confirmation message
+    function submitBooking() {
+      const message = document.getElementById('success-msg');
+      message.style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
