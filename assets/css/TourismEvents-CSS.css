@@ -1947,7 +1947,7 @@ a.main-stroked-button:hover {
 --------------------------------------------- */
 .eventDetailsImg {
   width: 100%;
-  background: #000;
+  background: #444151;
 }
 
 .eventDetailsimg-fill {
@@ -1987,4 +1987,70 @@ a.main-stroked-button:hover {
   border-radius: 4px;
   z-index: 2;
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+#eventDetails {
+  background-color: #444151;
+  color: white;
+  padding: 40px 15px;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+
+.right-text-content h6 {
+  border-bottom: 1px solid #ccc;
+  padding: 8px 0;
+  margin: 0;
+  font-weight: normal;
+}
+
+.right-text-content h6 span {
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+/* Map styling */
+.map-wrapper {
+  max-width: 500px; /* or whatever size you want */
+  margin: 30px auto 0;
+  border-radius: 15px;
+  background-color: #3b3a4d; /* a bit darker than #444151 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.map-container {
+  height: 300px;
+  border-radius: 15px 15px 0 0; /* rounded top corners only */
+  overflow: hidden;
+  border-bottom: 1px solid #6a6a80; /* thin line between map and text box */
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  border-radius: 15px 15px 0 0; /* match container rounding */
+}
+
+.map-link {
+  background-color: #444151; /* slightly lighter than container */
+  padding: 12px 20px;
+  border-radius: 0 0 15px 15px; /* rounded bottom corners */
+  text-align: center;
+}
+
+.map-link a {
+  color: #ccc;
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.map-link a:hover,
+.map-link a:focus {
+  border-color: #ccc;
+  outline: none;
 }

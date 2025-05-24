@@ -53,11 +53,12 @@
       </div>
     </div>
     <!-- ***** Header Area End ***** -->
-
+    <br /><br /><br />
     <!-- ***** Event Details Start ***** -->
-    <section class="section" id="about">
+    <section id="eventDetails">
       <div class="container">
         <div class="row">
+          <!-- Details Left -->
           <div class="col-lg-6 col-md-6 col-xs-12">
             <div class="left-text-content">
               <div class="section-heading">
@@ -67,30 +68,38 @@
               <p id="eventDescription"></p>
             </div>
           </div>
+          <!-- Details Right -->
           <div class="col-lg-6 col-md-6 col-xs-12">
             <div class="right-text-content">
               <h6>Event Date: <span id="eventDate"></span></h6>
-              <h6>Time:<span id="eventTime"></span></h6>
+              <h6>Time: <span id="eventTime"></span></h6>
               <h6>Location: <span id="eventLocation"></span></h6>
             </div>
           </div>
         </div>
+
+        <!-- Map -->
+        <div class="map-wrapper">
+          <div class="map-container">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193571.43843406407!2d-74.11808695067699!3d40.70582543559708!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c250bede84eb1d%3A0xb5e629eec60bdb4!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sus!4v1684941834551!5m2!1sen!2sus"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+          <div class="map-link">
+            <a
+              href="https://www.google.com/maps/place/New+York,+NY,+USA"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Click here to open the map in Google Maps
+            </a>
+          </div>
+        </div>
       </div>
     </section>
-    <style>
-      .right-text-content h6 {
-        border-bottom: 1px solid #ccc; /* thin gray line */
-        padding: 8px 0;
-        margin: 0;
-        font-weight: normal;
-      }
-
-      .right-text-content h6 span {
-        font-weight: bold;
-        margin-left: 5px;
-      }
-    </style>
-    <!-- ***** Event Details End ***** -->
 
     <!-- jQuery -->
     <script src="assets/js/jquery-2.1.0.min.js"></script>
