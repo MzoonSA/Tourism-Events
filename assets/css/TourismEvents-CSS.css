@@ -1364,33 +1364,40 @@ contact
 --------------------------------------------- 
 */
 
+#contact-us {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding: 120px 0px;
+  background-image: url(../images/dotted-map-bg.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
 #contact-us .section-heading {
   margin-bottom: 50px;
+  text-align: center;
 }
 
 #contact-us .section-heading h6 {
   color: #778da9;
 }
 
-#contact-us .left-text-content ul li {
-  margin-bottom: 30px;
+#contact-us .left-text-content ul {
+  padding: 0;
+  list-style-type: none;
+  text-align: center;
 }
 
 #contact-us .left-text-content ul li {
+  margin-bottom: 30px;
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.5px;
 }
 
 #contact-us .left-text-content ul li img {
-  margin-right: 15px;
-}
-
-#contact-us {
-  padding: 120px 0px;
-  background-image: url(../images/dotted-map-bg.png);
-  background-position: center center;
-  background-repeat: no-repeat;
+  display: block;
+  margin: 0 auto;
 }
 
 #contact {
@@ -1422,12 +1429,17 @@ contact
 }
 
 .contact-form ::-webkit-input-placeholder {
+
+
   /* Edge */
+
   color: #7a7a7a;
 }
 
 .contact-form :-ms-input-placeholder {
+
   /* Internet Explorer 10-11 */
+
   color: #7a7a7a;
 }
 
