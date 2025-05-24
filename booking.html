@@ -67,8 +67,13 @@
       transition: 0.4s;
     }
 
+    /* شفافيات البليس هولدر */
     .booking-container input::placeholder {
-      color: #ddd;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .booking-container select option:first-child {
+      color: rgba(255, 255, 255, 0.3);
     }
 
     .booking-container input:focus,
@@ -116,22 +121,20 @@
   <div class="booking-container">
     <h2>Book Your Event</h2>
 
-    <!-- ✅ الحقل الإضافي: الإيميل -->
     <label for="email">Email</label>
     <input type="email" id="email" placeholder="Enter your email" />
 
-    <!-- ✅ الحقل الإضافي: رقم الجوال -->
     <label for="phone">Phone Number</label>
     <input type="tel" id="phone" placeholder="Enter your phone number" />
 
     <label for="event">Event Type</label>
     <select id="event">
       <option value="">-- Choose an Event --</option>
-      <option value="desert">MUSIC</option>
-      <option value="city">ART & CULTURE</option>
-      <option value="adventure">WORKSHOP</option>
-      <option value="adventure">FASHION & BEAUTY</option>
-      <option value="adventure">FOOD & DRINK</option>
+      <option value="music">MUSIC</option>
+      <option value="culture">ART & CULTURE</option>
+      <option value="workshop">WORKSHOP</option>
+      <option value="fashion">FASHION & BEAUTY</option>
+      <option value="food">FOOD & DRINK</option>
     </select>
 
     <label for="ticketType">Ticket Type</label>
@@ -143,7 +146,7 @@
     </select>
 
     <label for="quantity">Number of Tickets</label>
-    <input type="number" id="quantity" min="1" value="1" />
+    <input type="number" id="quantity" min="1" value="1" placeholder="Enter quantity" />
 
     <label for="discount">Discount Code</label>
     <input type="text" id="discount" placeholder="Enter discount code" />
