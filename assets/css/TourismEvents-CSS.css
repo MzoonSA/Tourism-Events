@@ -13,6 +13,7 @@ Table of contents
 10. preloader
 11. search
 12. portfolio
+13. amendments
 
 --------------------------------------------- */
 /* 
@@ -107,7 +108,7 @@ global styles
 */
 html,
 body {
-  background: #0d1b2a;
+  background: #3a3745; /*#444151*/
   font-family: 'Raleway', sans-serif;
 }
 
@@ -1314,22 +1315,25 @@ join us
 --------------------------------------------- 
 */
 
+
 #join-us {
-  margin-top: 100px;
-  margin-bottom: 100px;
+  margin-top: 100px; 
+  margin-bottom: 100px; 
   padding: 120px 0px;
-  background-image: url(../images/dotted-map-bg.png);
-  background-position: center center;
-  background-repeat: no-repeat;
-  text-align: center;
+  background-color: #444151; 
+  background-image: url(../images/dotted-map-bg.png); 
+  background-position: center center; 
+  background-repeat: no-repeat; 
+  text-align: center; 
 }
+
 
 #join-us .section-heading {
   margin-bottom: 40px;
 }
 
 #join-us .section-heading h6 {
-  color: #778da9;
+  color: white;
   font-size: 16px;
   margin-bottom: 10px;
 }
@@ -1337,13 +1341,13 @@ join us
 #join-us .section-heading h2 {
   font-size: 32px;
   font-weight: bold;
-  color: #ffffff;
+  color: white;
 }
 
-/* Button link styling */
+
 #join-us .main-button-icon {
   display: inline-block;
-  background-color: #778da9;
+  background-color: transparent;
   color: #ffffff;
   padding: 12px 30px;
   border-radius: 30px;
@@ -1351,12 +1355,12 @@ join us
   font-size: 16px;
   text-decoration: none;
   transition: background-color 0.3s ease;
+  border: 2px solid white;
 }
 
 #join-us .main-button-icon:hover {
-  background-color: #778da9;
-  text-decoration: none;
-  color: #ffffff;
+  background-color: #444151;
+  color: white;
 }
 
 
@@ -1371,7 +1375,7 @@ footer
 
 footer {
   padding: 80px 0px;
-  background: url("../images/slide-03.jpg") no-repeat center center;
+  background:#444151; /* url("../images/slide-03.jpg") no-repeat center center;*/
   background-size: cover;
 }
 
@@ -1769,7 +1773,7 @@ portfolio
 
 
 /* ---------------------------------------------
-   Amendments
+   amendments
 --------------------------------------------- */
 
 /* About Us section */
