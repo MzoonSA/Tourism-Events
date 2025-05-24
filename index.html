@@ -106,6 +106,29 @@
             </fieldset>
         </form>
     </div>
+       // Map event names to their IDs (make sure these IDs match those in your JSON data)
+  const eventsMap = {
+    "a magical night": 1,
+    "artful wonder": 2,
+    "learn and create": 3,
+    "creative magic": 4,
+    "fashion vibes": 5
+  };
+
+  document.getElementById('contact').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const query = this.q.value.trim().toLowerCase();
+    if (!query) {
+      alert('Please enter an event name.');
+      return;
+    }
+    if (eventsMap[query]) {
+      window.location.href = `eventDetails.html?id=${eventsMap[query]}`;
+    } else {
+      alert('Event not found. Please check your spelling or try another search.');
+    }
+  });
+</script>
 
     <!-- ***** Main Banner Area Start ***** -->
     <div class="main-banner header-text" id="top">
