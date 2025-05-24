@@ -1,40 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Organizer Login</title>
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/TourismEvents-CSS.css">
-</head>
-<body>
-<div class="container mt-5">
-<h2 class="text-center">Organizer Login</h2>
-<form id="organizer-login-form" class="mt-4">
-<div class="form-group">
-<label for="username">Email</label>
-<input type="email" class="form-control" id="username" placeholder="admin@tourism.com" required>
-</div>
-<div class="form-group">
-<label for="password">Password</label>
-<input type="password" class="form-control" id="password" placeholder="123456" required>
-</div>
-<button type="submit" class="btn btn-primary btn-block">Sign In</button>
-</form>
-</div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Organizer Login</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/TourismEvents-CSS.css" />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h2 class="text-center">Organizer Login</h2>
+      <form id="organizer-login-form" class="mt-4">
+        <div class="form-group">
+          <label for="username">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="username"
+            placeholder="admin@tourism.com"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="123456"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+      </form>
+    </div>
 
-<script>
-document.getElementById('Organizer-login-form').addEventListener('submit', function(e) {
-e.preventDefault();
-const email = document.getElementById('username').value;
-const password = document.getElementById('password').value;
+    <script>
+      document
+        .getElementById("Organizer-login-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const email = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
 
-if (email === 'admin@tourism.com' && password === '123456') {
-localStorage.setItem('isAdmin', 'true');
-window.location.href = 'Organizer-dashboard.html';
-} else {
-alert('Wrong email or password!');
-}
-});
-</script>
-</body>
+          if (email === "admin@tourism.com" && password === "123456") {
+            localStorage.setItem("isAdmin", "true");
+            window.location.href = "Organizer-dashboard.html";
+          } else {
+            alert("Wrong email or password!");
+          }
+        });
+    </script>
+  </body>
 </html>
