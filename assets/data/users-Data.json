@@ -1,0 +1,27 @@
+
+[
+  {
+    "name": "Noura",
+    "email": "noura@gmail.com",
+    "phone": "0551673310",
+    "password": "Pass123!"
+  },
+  {
+    "name": "Mozoon",
+    "email": "mozoon@gmail.com",
+    "phone": "0558325156",
+    "password": "Pass1234!"
+  },
+  {
+    "name": "Dana",
+    "email": "dana@gmail.com",
+    "phone": "0545494996",
+    "password": "Pass12345!"
+  },
+  {
+    "name": "Ghaida",
+    "email": "ghaida@gmail.com",
+    "phone": "0500740851",
+    "password": "Pass123456!"
+  }
+]
