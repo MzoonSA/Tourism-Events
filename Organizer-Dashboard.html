@@ -1,52 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Organizer Dashboard</title>
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/TourismEvents-CSS.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Organizer Dashboard</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/TourismEvents-CSS.css" />
+  </head>
+  <body>
+    <script>
+      if (localStorage.getItem("isAdmin") !== "true") {
+        alert("Access denied. Please login first.");
+        window.location.href = "organizer-login.html";
+      }
+    </script>
 
-<script>
-if (localStorage.getItem('isAdmin') !== 'true') {
-alert("Access denied. Please login first.");
-window.location.href = 'organizer-login.html';
-}
-</script>
+    <div class="container mt-5">
+      <h2>Welcome, Organizer!</h2>
 
-<div class="container mt-5">
-<h2>Welcome, Organizer!</h2>
+      <h4 class="mt-4">Your Profile</h4>
+      <form>
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" placeholder="Your Name" />
+        </div>
+        <div class="form-group">
+          <label>Bio</label>
+          <textarea
+            class="form-control"
+            rows="3"
+            placeholder="Tell users about your events"
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Save Profile</button>
+      </form>
 
-<h4 class="mt-4">Your Profile</h4>
-<form>
-<div class="form-group"> 
-<label>Name</label>
-<input type="text" class="form-control" placeholder="Your Name">
-</div>
-<div class="form-group">
-<label>Bio</label>
-<textarea class="form-control" rows="3" placeholder="Tell users about your events"></textarea>
-</div>
-<button type="submit" class="btn btn-success">Save Profile</button>
-</form>
-                                              
-<h4 class="mt-5">Upcoming Events</h4>
-<ul class="list-group">
-<li class="list-group-item">Art Expo 2025 - May 25</li>
-<li class="list-group-item">Music Night - June 10</li>
-<li class="list-group-item">Culinary Festival - July 1</li>
-</ul>
+      <h4 class="mt-5">Upcoming Events</h4>
+      <ul class="list-group">
+        <li class="list-group-item">Art Expo 2025 - May 25</li>
+        <li class="list-group-item">Music Night - June 10</li>
+        <li class="list-group-item">Culinary Festival - July 1</li>
+      </ul>
 
-<button class="btn btn-danger mt-4" onclick="logout()">Log Out</button>
-</div>
+      <button class="btn btn-danger mt-4" onclick="logout()">Log Out</button>
+    </div>
 
-<script>
-function logout() {
-localStorage.removeItem('isAdmin');
-window.location.href = 'organizer-login.html';
-}
-
-</script>   
-</body>
+    <script>
+      function logout() {
+        localStorage.removeItem("isAdmin");
+        window.location.href = "organizer-login.html";
+      }
+    </script>
+  </body>
 </html>
