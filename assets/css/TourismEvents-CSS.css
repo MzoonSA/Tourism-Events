@@ -1400,7 +1400,6 @@ contact
 }
 
 #contact {
-  
   padding: 20px;
 }
 
@@ -1414,6 +1413,57 @@ contact
 
 .contact-form ::placeholder {
   color: #7a7a7a;
+}
+
+/* 
+---------------------------------------------
+join us
+--------------------------------------------- 
+*/
+
+#join-us {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding: 120px 0px;
+  background-image: url(../images/dotted-map-bg.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+#join-us .section-heading {
+  margin-bottom: 40px;
+}
+
+#join-us .section-heading h6 {
+  color: #778da9;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+#join-us .section-heading h2 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* Button link styling */
+#join-us .main-button-icon {
+  display: inline-block;
+  background-color: #778da9;
+  color: #ffffff;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+#join-us .main-button-icon:hover {
+  background-color: #778da9;
+  text-decoration: none;
+  color: #ffffff;
 }
 
 /* 

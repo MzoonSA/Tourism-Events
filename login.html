@@ -79,10 +79,25 @@
       <!-- Sign Up Form -->
       <form id="signupForm">
         <h2>Sign Up</h2>
-        <input type="text" placeholder="Full Name" required />
-        <input type="email" placeholder="Email" required />
-        <input type="tel" placeholder="Phone" required />
-        <input type="password" placeholder="Password" required />
+        <input type="text" id="signupName" placeholder="Full Name" required />
+        <input type="email" id="signupEmail" placeholder="Email" required />
+        <input
+          type="tel"
+          id="signupPhone"
+          placeholder="Phone"
+          required
+          pattern="^\+?\d{10,15}$"
+          title="Enter a valid phone number (10 to 15 digits, optional + at start)"
+        />
+        <input
+          type="password"
+          id="signupPassword"
+          placeholder="Password"
+          required
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}"
+          title="Must contain at least one number, one uppercase and one lowercase letter, one special character (!@#$%^&*), and at least 8 or more characters"
+        />
+
         <button type="submit">Sign Up</button>
       </form>
     </div>
@@ -94,6 +109,35 @@
         document.getElementById("signupForm").style.display =
           type === "signup" ? "block" : "none";
       }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("signupForm");
+        const emailInput = document.getElementById("signupEmail");
+        const phoneInput = document.getElementById("signupPhone");
+        const passwordInput = document.getElementById("signupPassword");
+
+        form.addEventListener("submit", (e) => {
+          // Clear previous custom messages
+          emailInput.setCustomValidity("");
+          phoneInput.setCustomValidity("");
+          passwordInput.setCustomValidity("");
+
+          // Phone validation: use pattern attribute, but add custom message if needed
+          if (!phoneInput.checkValidity()) {
+            phoneInput.setCustomValidity(
+              "Enter a valid phone number (10 to 15 digits, optional + at start)."
+            );
+          }
+
+          // Password validation uses pattern attribute and title for message automatically
+
+          // Check validity and show messages
+          if (!form.checkValidity()) {
+            e.preventDefault();
+            form.reportValidity();
+          }
+        });
+      });
     </script>
   </body>
 </html>
