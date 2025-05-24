@@ -1363,71 +1363,52 @@ testimonials
 contact
 --------------------------------------------- 
 */
-
-#contact-us .section-heading {
-  margin-bottom: 50px;
-}
-
-#contact-us .section-heading h6 {
-  color: #778da9;
-}
-
-#contact-us .left-text-content ul li {
-  margin-bottom: 30px;
-}
-
-#contact-us .left-text-content ul li {
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-
-#contact-us .left-text-content ul li img {
-  margin-right: 15px;
-}
-
 #contact-us {
+  margin-top: 100px;
+  margin-bottom: 100px;
   padding: 120px 0px;
   background-image: url(../images/dotted-map-bg.png);
   background-position: center center;
   background-repeat: no-repeat;
 }
 
-#contact {
-  margin-top: 40px;
+#contact-us .section-heading {
+  margin-bottom: 50px;
+  text-align: center;
 }
 
-.contact-form input,
-.contact-form textarea {
-  color: #7a7a7a;
-  font-size: 15px;
-  border: 1px solid #ddd;
-  background-color: #0d1b2a;
-  width: 100%;
-  height: 46px;
-  outline: none;
-  padding-top: 3px;
-  padding-left: 20px;
-  padding-right: 20px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+#contact-us .section-heading h6 {
+  color: #778da9;
+}
+
+#contact-us .left-text-content ul {
+  padding: 0;
+  list-style-type: none;
+  text-align: center;
+}
+
+#contact-us .left-text-content ul li {
   margin-bottom: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
-.contact-form textarea {
-  height: 150px;
-  resize: none;
+#contact-us .left-text-content ul li img {
+  display: block;
+  margin: 0 auto;
+}
+
+#contact {
+  
   padding: 20px;
 }
 
 .contact-form ::-webkit-input-placeholder {
-  /* Edge */
   color: #7a7a7a;
 }
 
 .contact-form :-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
   color: #7a7a7a;
 }
 
