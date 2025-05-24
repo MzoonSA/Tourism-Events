@@ -89,7 +89,7 @@
 
       <!-- Sign Up Form -->
       <form id="signupForm">
-        <h2>Organizer Sign Up</h2>
+        <h2>Sign Up</h2>
         <input type="text" id="signupName" placeholder="Full Name" required />
         <input type="email" id="signupEmail" placeholder="Email" required />
         <input
@@ -108,9 +108,9 @@
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}"
           title="Must contain at least one number, one uppercase and one lowercase letter, one special character (!@#$%^&*), and at least 8 or more characters"
         />
-
         <button type="submit">Sign Up</button>
       </form>
+      <p id="signupError" style="color: red"></p>
     </div>
 
     <script>
@@ -187,6 +187,55 @@
               errorDiv.textContent = "Could not load user data.";
             });
         });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("signupForm");
+        const emailInput = document.getElementById("signupEmail");
+        const phoneInput = document.getElementById("signupPhone");
+        const passwordInput = document.getElementById("signupPassword");
+        const signupError = document.getElementById("signupError");
+
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          emailInput.setCustomValidity("");
+          phoneInput.setCustomValidity("");
+          passwordInput.setCustomValidity("");
+          signupError.textContent = "";
+
+          fetch("assets/data/Organizer-Data.json")
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Failed to load user data.");
+              }
+              return response.json();
+            })
+            .then((users) => {
+              const email = emailInput.value.trim();
+              const phone = phoneInput.value.trim();
+
+              const exists = users.some(
+                (user) => user.email === email || user.phone === phone
+              );
+
+              if (exists) {
+                signupError.textContent =
+                  "Email or phone number already taken.";
+                return;
+              }
+
+              if (!form.checkValidity()) {
+                form.reportValidity();
+              } else {
+                alert("Signup successful!");
+                form.reset();
+              }
+            })
+            .catch(() => {
+              signupError.textContent = "Could not validate user data.";
+            });
+        });
+      });
     </script>
   </body>
 </html>
