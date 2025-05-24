@@ -100,6 +100,18 @@
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    position: relative;
+  }
+
+  #search .close {
+    position: absolute;
+    right: 10px;
+    top: -10px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #888;
   }
 
   #contact {
@@ -109,32 +121,47 @@
 
   #contact input[type="search"] {
     width: 100%;
-    padding: 10px 40px 10px 35px; /* مساحة داخلية تسمح بظهور الأيقونة */
+    padding: 10px 40px 10px 35px;
     font-size: 16px;
-    border: 2px solid #1976d2; /* أزرق أنيق */
-    border-radius: 30px; /* حواف دائرية */
+    border: 2px solid #1976d2;
+    border-radius: 30px;
     outline: none;
     background: url('https://cdn-icons-png.flaticon.com/512/622/622669.png') no-repeat 10px center;
     background-size: 20px;
   }
 
   #contact .main-button {
-    display: none; /* إخفاء زر البحث إذا ما تبينه */
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
   }
 
-  .close {
-    display: none; /* إخفاء زر الإغلاق إذا ما له لزوم */
+  fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
   }
 </style>
 
 <div id="search">
+  <button type="button" class="close">×</button>
   <form id="contact" action="#" method="get">
     <fieldset>
       <input type="search" name="q" placeholder="Search events" aria-label="Search through site content">
     </fieldset>
+    <fieldset>
+      <button type="submit" class="main-button">Search</button>
+    </fieldset>
   </form>
 </div>
 
+      <script>
   // Map event names to their IDs 
   const eventsMap = {
     "a magical night": 1,
