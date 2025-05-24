@@ -95,18 +95,46 @@
     <!-- ***** Header Area End ***** -->
     
     <!-- ***** Search Area ***** -->
-    <div id="search">
-        <button type="button" class="close">×</button>
-        <form id="contact" action="#" method="get">
-            <fieldset>
-                <input type="search" name="q" placeholder="Seach events" aria-label="Search through site content">
-            </fieldset>
-            <fieldset>
-                <button type="submit" class="main-button">Search</button>
-            </fieldset>
-        </form>
-    </div>
-      <script>
+    <style>
+  #search {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  #contact {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  #contact input[type="search"] {
+    width: 100%;
+    padding: 10px 40px 10px 35px; 
+    font-size: 16px;
+    border: 2px solid #1976d2;
+    border-radius: 30px; 
+    outline: none;
+    background: url('https://cdn-icons-png.flaticon.com/512/622/622669.png') no-repeat 10px center;
+    background-size: 20px;
+  }
+
+  #contact .main-button {
+    display: none; 
+  }
+
+  .close {
+    display: none;
+  }
+</style>
+
+<div id="search">
+  <form id="contact" action="#" method="get">
+    <fieldset>
+      <input type="search" name="q" placeholder="Search events" aria-label="Search through site content">
+    </fieldset>
+  </form>
+</div>
+
   // Map event names to their IDs 
   const eventsMap = {
     "a magical night": 1,
