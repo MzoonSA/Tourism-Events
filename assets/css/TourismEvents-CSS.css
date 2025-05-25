@@ -424,7 +424,7 @@ header
 
 .header-area .main-nav .logo {
   line-height: 80px;
-  color: #0d1b2a;
+  color: #444151; 
   font-size: 28px;
   font-weight: 700;
   text-transform: uppercase;
@@ -460,7 +460,7 @@ header
 }
 
 .header-area .main-nav .nav .search-icon a {
-  background-color: #0d1b2a;
+  background-color: #444151;
   color: #778da9;
   width: 40px;
   height: 40px;
@@ -474,7 +474,7 @@ header
     float: none;
     text-align: center;
     width: 100%;
-    background-color: #0d1b2a;
+    background-color: #444151; /*#0d1b2a*/
     margin-left: 0px;
   }
 }
@@ -488,7 +488,7 @@ header
   display: block;
   font-weight: 500;
   font-size: 13px;
-  color: #0d1b2a;
+  color: #444151; /*#0d1b2a*/
   text-transform: uppercase;
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
@@ -501,18 +501,18 @@ header
 }
 
 .header-area .main-nav .nav li a {
-  color: #0d1b2a;
+  color: #444151; /*#0d1b2a*/
 }
 
 .header-area .main-nav .nav li:hover a,
 .header-area .main-nav .nav li a.active {
-  color: #0d1b2a !important;
+  color: #444151 !important; /*#0d1b2a*/
   opacity: 0.5;
 }
 
 .background-header .main-nav .nav li:hover a,
 .background-header .main-nav .nav li a.active {
-  color: #778da9 !important;
+  color: #444151 !important; /*#778da9*/
   opacity: 1;
 }
 
@@ -558,8 +558,8 @@ header
 .header-area .main-nav .nav li.submenu ul li a {
   opacity: 1;
   display: block;
-  background: #0d1b2a;
-  color: #778da9 !important;
+  background: #444151; /* dropdown-menu (categories.nav) */
+  color: white !important;
   padding-left: 20px;
   height: 40px;
   line-height: 40px;
@@ -573,8 +573,8 @@ header
 }
 
 .header-area .main-nav .nav li.submenu ul li a:hover {
-  background: #778da9;
-  color: #0d1b2a !important;
+  background: #444151; 
+  color: white !important; 
   padding-left: 25px;
 }
 
@@ -772,7 +772,7 @@ header
   }
   .header-area .main-nav .nav li {
     width: 100%;
-    background: #0d1b2a;
+    background: #444151;
     border-bottom: 1px solid #eee;
     padding-left: 0px !important;
     padding-right: 0px !important;
@@ -782,7 +782,7 @@ header
     line-height: 50px !important;
     padding: 0px !important;
     border: none !important;
-    background: #0d1b2a !important;
+    background: #444151 !important;
     color: #778da9 !important;
   }
   .header-area .main-nav .nav li a:hover {
