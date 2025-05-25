@@ -95,62 +95,18 @@
     <!-- ***** Header Area End ***** -->
     
     <!-- ***** Search Area ***** -->
-<style>
-  .search-wrapper {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    display: flex;
-    align-items: center;
-    background: white;
-    border-radius: 30px;
-    padding: 5px 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    width: 220px;
-    height: 40px;
-    z-index: 1000;
-  }
-
-  .search-wrapper input[type="search"] {
-    border: none;
-    outline: none;
-    padding: 5px 10px 5px 30px;
-    font-size: 14px;
-    border-radius: 30px;
-    width: 100%;
-    background: url('https://cdn-icons-png.flaticon.com/512/622/622669.png') no-repeat 8px center;
-    background-size: 16px;
-  }
-
-  .search-wrapper button {
-    background-color: #1976d2;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    padding: 6px 12px;
-    font-size: 13px;
-    margin-left: 8px;
-    cursor: pointer;
-  }
-
-  @media (max-width: 500px) {
-    .search-wrapper {
-      width: 180px;
-    }
-
-    .search-wrapper button {
-      font-size: 12px;
-      padding: 5px 10px;
-    }
-  }
-</style>
-
-<div class="search-wrapper">
-  <form action="#" method="get" style="display: flex; align-items: center; width: 100%;">
-    <input type="search" name="q" placeholder="Search here..." aria-label="Search site content" />
-    <button type="submit">Search</button>
+<div id="search">
+  <button type="button" class="close">×</button>
+  <form id="contact" action="#" method="get">
+    <fieldset>
+      <input type="search" name="q" placeholder="Search events" aria-label="Search through site content">
+    </fieldset>
+    <fieldset>
+      <button type="submit" class="main-button">Search</button>
+    </fieldset>
   </form>
 </div>
+
       <script>
   // Map event names to their IDs 
   const eventsMap = {
@@ -175,6 +131,7 @@
     }
   });
 </script>
+
 
     <!-- ***** Main Banner Area Start ***** -->
     <div class="main-banner header-text" id="top">
