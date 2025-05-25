@@ -17,6 +17,7 @@
       align-items: center;
       height: 100vh;
     }
+
     .payment-container {
       background-color: #7a7dcf;
       padding: 30px;
@@ -26,17 +27,20 @@
       max-width: 400px;
       box-sizing: border-box;
     }
+
     h2 {
       text-align: center;
       margin-bottom: 20px;
       color: #fff;
     }
+
     label {
       display: block;
       margin-top: 15px;
       font-weight: bold;
       color: #fff;
     }
+
     input[type="text"] {
       width: 100%;
       padding: 12px;
@@ -47,10 +51,24 @@
       color: #fff;
       font-size: 16px;
       box-sizing: border-box;
+      transition: 0.4s;
     }
+
+    input:focus {
+      outline: none;
+      border-color: #b4b6f0;
+      box-shadow: 0 0 10px rgba(180, 182, 240, 0.7);
+    }
+
     input::placeholder {
       color: rgba(255, 255, 255, 0.3);
     }
+
+  
+    input::-webkit-calendar-picker-indicator {
+      display: none !important;
+    }
+
     .submit-btn {
       width: 100%;
       background-color: #5b5eb8;
@@ -64,15 +82,25 @@
       transition: background-color 0.3s ease, transform 0.2s ease;
       margin-top: 20px;
     }
+
     .submit-btn:hover {
       background-color: #4a4da3;
       transform: scale(1.03);
     }
+
     .success-message {
       margin-top: 20px;
       font-weight: bold;
       color: #caffd8;
       text-align: center;
+      display: none;
+    }
+
+    .error-message {
+      color: #ffdddd;
+      font-size: 14px;
+      text-align: center;
+      margin-top: 10px;
       display: none;
     }
   </style>
@@ -83,30 +111,73 @@
     <h2>Payment Information</h2>
 
     <label>Card Number:</label>
-    <input type="text" placeholder="1234 5678 9012 3456" />
+    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" autocomplete="off" />
 
     <label>Expiration Date:</label>
-    <input type="text" placeholder="MM/YY" />
+    <input type="text" id="expDate" placeholder="MM/YY" maxlength="5" autocomplete="off" />
 
     <label>CVV:</label>
-    <input type="text" placeholder="123" />
+    <input type="text" id="cvv" placeholder="123" maxlength="3" autocomplete="one-time-code" />
+
+
 
     <button class="submit-btn" onclick="submitBooking()">Submit</button>
     <p id="success-msg" class="success-message">Booking confirmed successfully!</p>
+    <p id="error-msg" class="error-message">Please fill all fields correctly.</p>
   </div>
 
   <script>
+    document.getElementById("cardNumber").addEventListener("input", function (e) {
+      let value = e.target.value.replace(/\D/g, "").substring(0, 16);
+      let formatted = "";
+      for (let i = 0; i < value.length; i += 4) {
+        if (i > 0) formatted += " ";
+        formatted += value.substring(i, i + 4);
+      }
+      e.target.value = formatted;
+    });
+
+    document.getElementById("expDate").addEventListener("input", function (e) {
+      let value = e.target.value.replace(/\D/g, "").substring(0, 4);
+      if (value.length >= 3) {
+        e.target.value = value.substring(0, 2) + "/" + value.substring(2);
+      } else {
+        e.target.value = value;
+      }
+    });
+
+    document.getElementById("cvv").addEventListener("input", function (e) {
+      e.target.value = e.target.value.replace(/\D/g, "").substring(0, 3);
+    });
+
     function submitBooking() {
-      const message = document.getElementById('success-msg');
-      message.style.display = 'block';
-    }
+  const card = document.getElementById("cardNumber").value.trim();
+  const exp = document.getElementById("expDate").value.trim();
+  const cvv = document.getElementById("cvv").value.trim();
+  const successMsg = document.getElementById("success-msg");
+  const errorMsg = document.getElementById("error-msg");
+
+  if (!card || !exp || !cvv) {
+    successMsg.style.display = "none";
+    errorMsg.style.display = "block";
+    return;
+  }
+
+  
+  window.location.href = "payment.html";
+}
+
   </script>
 
 </body>
 </html>
-    
-    
 
-   
-    
- 
+
+
+
+
+
+
+
+
+

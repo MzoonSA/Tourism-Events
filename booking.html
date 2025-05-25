@@ -66,8 +66,8 @@
       box-sizing: border-box;
       transition: 0.4s;
     }
+    
 
-    /* شفافيات البليس هولدر */
     .booking-container input::placeholder {
       color: rgba(255, 255, 255, 0.3);
     }
@@ -154,51 +154,80 @@
 
     <div id="totalPrice">Total: 0 SAR</div>
 
-    <button onclick="window.location.href='confirmation.html'">Confirm Booking</button>  <!--with confirmation-->
-
-
+    <button id="confirmBtn">Confirm Booking</button>
   </div>
 
   <script>
-    function confirmBooking() {
-      const event = document.getElementById("event").value;
-      const ticketType = document.getElementById("ticketType").value;
-      const quantity = parseInt(document.getElementById("quantity").value);
-      const discountCode = document.getElementById("discount").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const phone = document.getElementById("phone").value.trim();
-      const message = document.getElementById("discountMessage");
-      const priceBox = document.getElementById("totalPrice");
+    const ticketTypeEl = document.getElementById("ticketType");
+    const quantityEl = document.getElementById("quantity");
+    const discountEl = document.getElementById("discount");
+    const priceBox = document.getElementById("totalPrice");
+    const discountMessage = document.getElementById("discountMessage");
 
-      let pricePerTicket = 0;
+    function getPricePerTicket(type) {
+      if (type === "vip") return 300;
+      if (type === "regular") return 150;
+      if (type === "child") return 75;
+      return 0;
+    }
 
-      if (ticketType === "vip") pricePerTicket = 300;
-      else if (ticketType === "regular") pricePerTicket = 150;
-      else if (ticketType === "child") pricePerTicket = 75;
+    function updateTotal() {
+      const ticketType = ticketTypeEl.value;
+      const quantity = parseInt(quantityEl.value) || 0;
+      const discountCode = discountEl.value.trim();
 
-      if (!email || !phone || !event || !ticketType || !quantity || quantity < 1) {
-        message.textContent = "Please fill all fields correctly.";
-        message.style.color = "#ffdddd";
-        return;
-      }
-
+      const pricePerTicket = getPricePerTicket(ticketType);
       let total = pricePerTicket * quantity;
 
-      if (discountCode === "TOUR10") {
+     if (discountCode === "TOUR10") {
         total *= 0.9;
-        message.textContent = "✓ Discount applied!";
-        message.style.color = "#caffd8";
-      } else if (discountCode) {
-        message.textContent = "Invalid discount code.";
-        message.style.color = "#ffdddd";
-        return;
+       discountMessage.textContent = "✓ 10% discount applied!";
+       discountMessage.style.color = "#caffd8";
+      } else if (discountCode === "HALFOFF") {
+          total *= 0.5;
+       discountMessage.textContent = "✓ 50% discount applied!";
+       discountMessage.style.color = "#caffd8";
+      } else if (discountCode.length > 0) {
+      discountMessage.textContent = "Invalid discount code.";
+      discountMessage.style.color = "#ffdddd";
       } else {
-        message.textContent = "";
-      }
+      discountMessage.textContent = "";
+    }
+
 
       priceBox.textContent = `Total: ${total.toFixed(2)} SAR`;
     }
+
+   
+    ticketTypeEl.addEventListener("change", updateTotal);
+    quantityEl.addEventListener("input", updateTotal);
+    discountEl.addEventListener("input", updateTotal);
+
+    document.getElementById("confirmBtn").addEventListener("click", () => {
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const event = document.getElementById("event").value;
+      const ticketType = ticketTypeEl.value;
+      const quantity = parseInt(quantityEl.value);
+
+      if (!email || !phone || !event || !ticketType || !quantity || quantity < 1) {
+        discountMessage.textContent = "Please fill all fields correctly.";
+        discountMessage.style.color = "#ffdddd";
+        return;
+      }
+
+      
+      window.location.href = "confirmation.html";
+    });
+
+    
+    window.addEventListener("DOMContentLoaded", updateTotal);
   </script>
 </body>
 </html>
+
+
+
+
+
 
