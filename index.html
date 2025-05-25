@@ -99,19 +99,19 @@
 <style>
   #search {
     position: absolute;
-    top: 15px;
+    top: 12px;
     right: 20px;
-    z-index: 999;
+    z-index: 1000;
   }
 
   #contact {
-    width: 160px; /* نفس حجم الدائرة اللي بالصورة */
+    width: 180px; /* صغير وبجوار التوغل */
   }
 
   #contact input[type="search"] {
     width: 100%;
     padding: 8px 12px 8px 32px;
-    font-size: 14px;
+    font-size: 13px;
     border: none;
     border-radius: 999px;
     outline: none;
@@ -119,16 +119,33 @@
     color: #ccc;
     background: url('https://cdn-icons-png.flaticon.com/512/622/622669.png') no-repeat 10px center;
     background-size: 14px;
-    transition: width 0.3s ease;
   }
 
   #contact input[type="search"]::placeholder {
     color: #888;
   }
 
-  #contact .main-button,
+  #contact .main-button {
+    margin-top: 6px;
+    width: 100%;
+    padding: 6px;
+    font-size: 12px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
   #search .close {
-    display: none;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    font-size: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #888;
   }
 
   fieldset {
@@ -139,12 +156,17 @@
 </style>
 
 <div id="search">
+  <button type="button" class="close">×</button>
   <form id="contact" action="#" method="get">
     <fieldset>
-      <input type="search" name="q" placeholder="Search">
+      <input type="search" name="q" placeholder="Search events" aria-label="Search through site content">
+    </fieldset>
+    <fieldset>
+      <button type="submit" class="main-button">Search</button>
     </fieldset>
   </form>
 </div>
+
 
 
 
