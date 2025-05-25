@@ -96,33 +96,36 @@
     
     <!-- ***** Search Area ***** -->
 
-
 <style>
   #search {
     position: absolute;
     top: 15px;
     right: 20px;
-    z-index: 1000;
+    z-index: 999;
   }
 
   #contact {
-    width: 160px; /* مقاس قريب من اللي في الصورة */
+    width: 160px; /* نفس حجم الدائرة اللي بالصورة */
   }
 
   #contact input[type="search"] {
     width: 100%;
-    padding: 8px 8px 8px 32px; /* حشو لتوسيع اليسار لأيقونة */
+    padding: 8px 12px 8px 32px;
     font-size: 14px;
     border: none;
-    border-radius: 30px;
+    border-radius: 999px;
     outline: none;
     background-color: #2a2a2a;
     color: #ccc;
     background: url('https://cdn-icons-png.flaticon.com/512/622/622669.png') no-repeat 10px center;
-    background-size: 16px;
+    background-size: 14px;
+    transition: width 0.3s ease;
   }
 
-  /* إخفاء زر البحث تحت الحقل */
+  #contact input[type="search"]::placeholder {
+    color: #888;
+  }
+
   #contact .main-button,
   #search .close {
     display: none;
@@ -138,10 +141,11 @@
 <div id="search">
   <form id="contact" action="#" method="get">
     <fieldset>
-      <input type="search" name="q" placeholder="Search" aria-label="Search through site content">
+      <input type="search" name="q" placeholder="Search">
     </fieldset>
   </form>
 </div>
+
 
 
       <script>
