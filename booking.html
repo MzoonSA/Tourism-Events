@@ -67,6 +67,7 @@
       transition: 0.4s;
     }
     
+    
 
     .booking-container input::placeholder {
       color: rgba(255, 255, 255, 0.3);
@@ -97,6 +98,7 @@
       transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
+
     button:hover {
       background-color: #4a4da3;
       transform: scale(1.03);
@@ -113,8 +115,10 @@
       color: #ffdddd;
       font-size: 14px;
       margin-top: 5px;
+
     }
   </style>
+  
 </head>
 <body>
 
@@ -182,14 +186,14 @@
      if (discountCode === "TOUR10") {
         total *= 0.9;
        discountMessage.textContent = "✓ 10% discount applied!";
-       discountMessage.style.color = "#caffd8";
+       discountMessage.style.color = "#ffffff"; 
       } else if (discountCode === "HALFOFF") {
           total *= 0.5;
        discountMessage.textContent = "✓ 50% discount applied!";
-       discountMessage.style.color = "#caffd8";
+       discountMessage.style.color = "#ffffff";
       } else if (discountCode.length > 0) {
       discountMessage.textContent = "Invalid discount code.";
-      discountMessage.style.color = "#ffdddd";
+      discountMessage.style.color = "#ffffff";
       } else {
       discountMessage.textContent = "";
     }
@@ -212,7 +216,7 @@
 
       if (!email || !phone || !event || !ticketType || !quantity || quantity < 1) {
         discountMessage.textContent = "Please fill all fields correctly.";
-        discountMessage.style.color = "#ffdddd";
+        discountMessage.style.color = "#fff";
         return;
       }
 

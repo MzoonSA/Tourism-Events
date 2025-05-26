@@ -1724,6 +1724,69 @@ search
   padding: 0 !important;
 }
 
+
+
+.search-icon {
+  position: relative;
+  display: inline-block;
+  z-index: 1000;
+}
+
+.search-icon i {
+  font-size: 22px;
+  color: #fff;
+  cursor: pointer;
+}
+
+
+.search-dropdown {
+  display: none;
+  position: absolute;
+  top: 35px; 
+  right: 0;
+  background-color: #444151;
+  border: 1px solid #444;
+  width: 250px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  border-radius: 6px;
+  padding: 10px;
+  z-index: 9999;
+}
+
+
+.search-dropdown input {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 4px;
+  border: 1px solid white;
+  background-color: #444151;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+}
+
+
+#suggestions {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+#suggestions li {
+  padding: 8px;
+  border-bottom: 1px solid #ffffff;
+  color: #fff;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+#suggestions li:hover {
+  background-color: #222;
+}
+
+
 /* 
 ---------------------------------------------
 portfolio

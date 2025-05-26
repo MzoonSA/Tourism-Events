@@ -204,3 +204,113 @@
 
 
 })(window.jQuery);
+
+
+
+
+
+
+
+
+
+
+
+
+
+//search
+const events = [
+  { name: "MUSIC", filter: ".mus" },
+  { name: "ART & CULTURE", filter: ".art" },
+  { name: "WORKSHOPS", filter: ".ws" },
+  { name: "FASHION & BEAUTY", filter: ".fash" },
+  { name: "FOOD & DRINK", filter: ".fad" }
+];
+
+function toggleSearchDropdown() {
+  const dropdown = document.getElementById("searchDropdown");
+  if (dropdown.style.display === "block") {
+    dropdown.style.display = "none";
+  } else {
+    dropdown.style.display = "block";
+    populateEventList(events.map(e => e.name));
+    const input = document.getElementById("searchInput");
+    input.value = "";
+    input.placeholder = "Search for an event...";
+    input.focus();
+  }
+}
+
+function populateEventList(eventArray) {
+  const list = document.getElementById("eventList");
+  list.innerHTML = "";
+  eventArray.forEach(eventName => {
+    const li = document.createElement("li");
+    li.textContent = eventName;
+    li.onclick = () => {
+      goToEvent(eventName);
+    };
+    list.appendChild(li);
+  });
+}
+
+function goToEvent(eventName) {
+  const dropdown = document.getElementById("searchDropdown");
+  dropdown.style.display = "none";
+
+  //go to section events
+  window.location.href = "#projects";
+
+  const eventObj = events.find(e => e.name === eventName);
+  if (eventObj) {
+    const projectsSection = document.getElementById("projects");
+    const targetItem = projectsSection.querySelector(eventObj.filter);
+
+    if (targetItem) {
+
+      targetItem.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      // temp
+      targetItem.style.transition = "background-color 0.5s ease";
+      targetItem.style.backgroundColor = "#9fa2f7"; 
+      targetItem.style.color = "#000"; 
+
+      // return after 3s
+      setTimeout(() => {
+        targetItem.style.backgroundColor = "";
+        targetItem.style.color = "";
+      }, 3000);
+    }
+  }
+}
+
+
+const searchInput = document.getElementById("searchInput");
+const suggestionsList = document.getElementById("suggestions");
+
+searchInput.addEventListener("input", function () {
+  const input = this.value.trim().toLowerCase();
+  suggestionsList.innerHTML = "";
+  if (input.length > 0) {
+    const filteredEvents = events.filter(event => event.name.toLowerCase().includes(input));
+    filteredEvents.forEach(event => {
+      const li = document.createElement("li");
+      li.textContent = event.name;
+      li.addEventListener("click", () => {
+        goToEvent(event.name);
+      });
+      suggestionsList.appendChild(li);
+    });
+  } else {
+    suggestionsList.innerHTML = "";
+    populateEventList(events.map(e => e.name));
+  }
+});
+
+document.addEventListener("click", function (event) {
+  const dropdown = document.getElementById("searchDropdown");
+  const searchIcon = document.querySelector(".search-icon");
+  if (!dropdown.contains(event.target) && !searchIcon.contains(event.target)) {
+    dropdown.style.display = "none";
+  }
+});
+
