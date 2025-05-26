@@ -7,7 +7,8 @@
     "category": "Music",
     "date": "2025-06-10",
     "time": "8:00 PM",
-    "location": "Grand Arena, City Center"
+    "location": "Boulevard City, Abu Baker Salem Stage",
+    "mapURL": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2842.3880202279065!2d46.60113064379981!3d24.768188056027807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2ee3044d93cf41%3A0x590c628322f74603!2sAbu%20Bakr%20Salem%20Stage!5e0!3m2!1sen!2ssa!4v1748265983530!5m2!1sen!2ssa"
   },
   {
     "id": 2,
@@ -17,7 +18,8 @@
     "category": "Art & Culture",
     "date": "2025-06-12",
     "time": "6:30 PM",
-    "location": "Modern Art Gallery"
+    "location": "Naila Art Gallery",
+    "mapURL": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.72319690737!2d46.663847775592686!3d24.70204037803302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f1cd5e86daf31%3A0x73fca45abbc892f1!2sNaila%20Art%20Gallery!5e0!3m2!1sen!2ssa!4v1748266180071!5m2!1sen!2ssa"
   },
   {
     "id": 3,
@@ -27,7 +29,8 @@
     "category": "Workshops",
     "date": "2025-06-14",
     "time": "2:00 PM",
-    "location": "Innovation Hub, Room 204"
+    "location": "ENCHANTED Art Center",
+    "mapURL": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28996.292759517517!2d46.638481674316395!3d24.7084519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03d9ce1b8559%3A0xaeb493b42aa219b9!2sENCHANTED%20Art%20Center!5e0!3m2!1sen!2ssa!4v1748266447744!5m2!1sen!2ssa"
   },
   {
     "id": 4,
@@ -37,7 +40,8 @@
     "category": "Fashion & Beauty",
     "date": "2025-06-16",
     "time": "7:00 PM",
-    "location": "Skyline Fashion Hall"
+    "location": "Recherché Fashion Gallery",
+    "mapURL": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.3357624904697!2d46.72042487559402!3d24.74967447800182!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03d6aefb35df%3A0xeef14eda19242744!2sRecherch%C3%A9%20Fashion%20Gallery!5e0!3m2!1sen!2ssa!4v1748266616416!5m2!1sen!2ssa"
   },
   {
     "id": 5,
@@ -47,7 +51,8 @@
     "category": "Art & Culture",
     "date": "2025-06-18",
     "time": "5:00 PM",
-    "location": "Downtown Arts District"
+    "location": "Abstract Art Gallery",
+    "mapURL": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3625.1733619089136!2d46.68644017559219!3d24.686566578043156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f0323db07654b%3A0xfb79e5711b412ae4!2sABSTRACT%20ART%20GALLERY-OLAYA!5e0!3m2!1sen!2ssa!4v1748266695055!5m2!1sen!2ssa"
   },
   {
     "id": 6,
@@ -57,6 +62,7 @@
     "category": "Food & Drink",
     "date": "2025-06-20",
     "time": "7:30 PM",
-    "location": "City Culinary Pavilion"
+    "location": "Foodex Saudi",
+    "mapURL": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3709.154547997656!2d39.15511957550516!3d21.618900580182277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c3d13808d3add3%3A0x8a94db0e5b7c76a9!2z2YXYudix2LYg2YHZiNiv2YrZg9izINin2YTYs9i52YjYr9mK2Kk!5e0!3m2!1sen!2ssa!4v1748266864421!5m2!1sen!2ssa"
   }
 ]
