@@ -114,80 +114,218 @@
     </div>
 
     <script>
+      // Show login or signup form based on tab click
       function showForm(type) {
         document.getElementById("loginForm").style.display =
           type === "login" ? "block" : "none";
         document.getElementById("signupForm").style.display =
           type === "signup" ? "block" : "none";
+        // Clear login error on form switch
+        document.getElementById("loginError").textContent = "";
       }
 
+      // Simple base64 encode/decode as demonstration of "encryption"
+      function encryptPassword(password) {
+        return btoa(password);
+      }
+
+      function decryptPassword(encrypted) {
+        try {
+          return atob(encrypted);
+        } catch {
+          return "";
+        }
+      }
+
+      // Load users array from localStorage or empty array if none
+      function loadUsers() {
+        const data = localStorage.getItem("users");
+        return data ? JSON.parse(data) : [];
+      }
+
+      // Save users array to localStorage
+      function saveUsers(users) {
+        localStorage.setItem("users", JSON.stringify(users));
+      }
+
+      // Load login attempt info for a user from localStorage
+      function loadLoginAttempts(userKey) {
+        const data = localStorage.getItem("loginAttempts_" + userKey);
+        return data ? JSON.parse(data) : { attempts: 0, lockedUntil: 0, tempLockPassed: false };
+      }
+
+      // Save login attempt info for a user to localStorage
+      function saveLoginAttempts(userKey, info) {
+        localStorage.setItem("loginAttempts_" + userKey, JSON.stringify(info));
+      }
+
+      // Constants for locking times in milliseconds
+      const MAX_ATTEMPTS_BEFORE_LOCK = 3;
+      const LOCK_TIME_1_MIN = 60 * 1000; // 1 minute
+      const LOCK_TIME_5_MIN = 5 * 60 * 1000; // 5 minutes
+
       document.addEventListener("DOMContentLoaded", () => {
-        const form = document.getElementById("signupForm");
+        // Signup form validation and saving
+        const signupForm = document.getElementById("signupForm");
         const emailInput = document.getElementById("signupEmail");
         const phoneInput = document.getElementById("signupPhone");
         const passwordInput = document.getElementById("signupPassword");
 
-        form.addEventListener("submit", (e) => {
+        signupForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+
           // Clear previous custom messages
           emailInput.setCustomValidity("");
           phoneInput.setCustomValidity("");
           passwordInput.setCustomValidity("");
 
-          // Phone validation: use pattern attribute, but add custom message if needed
+          // Validate phone pattern
           if (!phoneInput.checkValidity()) {
             phoneInput.setCustomValidity(
               "Enter a valid phone number (10 to 15 digits, optional + at start)."
             );
           }
 
-          // Password validation uses pattern attribute and title for message automatically
-
-          // Check validity and show messages
-          if (!form.checkValidity()) {
-            e.preventDefault();
-            form.reportValidity();
+          // Validate form; if invalid, show messages and stop
+          if (!signupForm.checkValidity()) {
+            signupForm.reportValidity();
+            return;
           }
-        });
-      });
 
-      document
-        .getElementById("loginForm")
-        .addEventListener("submit", function (e) {
+          // Gather user inputs
+          const name = document.getElementById("signupName").value.trim();
+          const email = emailInput.value.trim();
+          const phone = phoneInput.value.trim();
+          const password = passwordInput.value.trim();
+
+          // Load existing users from localStorage
+          let users = loadUsers();
+
+          // Check if email or phone already registered
+          const exists = users.some(
+            (u) => u.email === email || u.phone === phone
+          );
+          if (exists) {
+            alert("Email or phone already registered.");
+            return;
+          }
+
+          // Encrypt password before saving
+          const encryptedPassword = encryptPassword(password);
+
+          // Add new user
+          users.push({
+            name,
+            email,
+            phone,
+            password: encryptedPassword,
+          });
+
+          // Save users back to localStorage
+          saveUsers(users);
+
+          alert("Sign up successful! You can now login.");
+
+          // Clear form and switch to login
+          signupForm.reset();
+          showForm("login");
+        });
+
+        // Login form submission
+        const loginForm = document.getElementById("loginForm");
+        const loginError = document.getElementById("loginError");
+
+        loginForm.addEventListener("submit", (e) => {
           e.preventDefault();
+          loginError.style.color = "red";
+          loginError.textContent = "";
 
           const emailPhone = document
             .getElementById("loginEmailPhone")
             .value.trim();
-          const password = document
-            .getElementById("loginPassword")
-            .value.trim();
-          const errorDiv = document.getElementById("loginError");
-          errorDiv.style.color = "red";
-          errorDiv.textContent = ""; // Clear previous errors
+          const password = document.getElementById("loginPassword").value.trim();
 
-          fetch("assets/data/users-Data.json")
-            .then((response) => {
-              if (!response.ok) {
-                throw new Error("Failed to load user data.");
-              }
-              return response.json();
-            })
-            .then((users) => {
-              const user = users.find(
-                (u) => u.email === emailPhone || u.phone === emailPhone
-              );
+          if (!emailPhone || !password) {
+            loginError.textContent = "Please fill all fields.";
+            return;
+          }
 
-              if (!user || user.password !== password) {
-                errorDiv.textContent = "Wrong email, phone, or password.";
-              } else {
-                errorDiv.style.color = "green";
-                errorDiv.textContent = "Login successful!";
-              }
-            })
-            .catch((error) => {
-              errorDiv.textContent = "Could not load user data.";
-            });
+          // Load login attempts for this user
+          let loginAttemptInfo = loadLoginAttempts(emailPhone);
+          const now = Date.now();
+
+          // Check if user is locked out
+          if (loginAttemptInfo.lockedUntil && loginAttemptInfo.lockedUntil > now) {
+            const waitSeconds = Math.ceil(
+              (loginAttemptInfo.lockedUntil - now) / 1000
+            );
+            loginError.textContent = `Too many failed attempts. Try again in ${waitSeconds} seconds.`;
+            return;
+          }
+
+          // Load users from localStorage
+          const users = loadUsers();
+          // Find user by email or phone
+          const user = users.find(
+            (u) => u.email === emailPhone || u.phone === emailPhone
+          );
+
+          if (!user) {
+            loginError.textContent = "User not found.";
+            return;
+          }
+
+          // Decrypt stored password to compare
+          const decryptedPassword = decryptPassword(user.password);
+
+          if (decryptedPassword === password) {
+            // Successful login - reset attempts
+            loginAttemptInfo = { attempts: 0, lockedUntil: 0, tempLockPassed: false };
+            saveLoginAttempts(emailPhone, loginAttemptInfo);
+
+            loginError.style.color = "green";
+            loginError.textContent = "Login successful!";
+          } else {
+            // Wrong password - increment attempts
+            loginAttemptInfo.attempts = (loginAttemptInfo.attempts || 0) + 1;
+
+            // Check if need to lock
+            if (
+              loginAttemptInfo.attempts > MAX_ATTEMPTS_BEFORE_LOCK &&
+              !loginAttemptInfo.tempLockPassed
+            ) {
+              // Lock for 1 minute after 3 wrong attempts
+              loginAttemptInfo.lockedUntil = now + LOCK_TIME_1_MIN;
+              loginError.textContent =
+                "Too many failed attempts. Try again in 1 minute.";
+            } else if (
+              loginAttemptInfo.attempts > MAX_ATTEMPTS_BEFORE_LOCK &&
+              loginAttemptInfo.tempLockPassed
+            ) {
+              // Lock for 5 minutes after 1 wrong attempt post first lock
+              loginAttemptInfo.lockedUntil = now + LOCK_TIME_5_MIN;
+              loginError.textContent =
+                "Too many failed attempts again. Try again in 5 minutes.";
+            } else {
+              // Normal wrong password message with attempts count
+              loginError.textContent = `Wrong password. Attempts: ${loginAttemptInfo.attempts}`;
+            }
+
+            // If lock expired and tempLockPassed not set, mark it true after first lock expires
+            if (
+              loginAttemptInfo.lockedUntil &&
+              loginAttemptInfo.lockedUntil <= now &&
+              !loginAttemptInfo.tempLockPassed
+            ) {
+              loginAttemptInfo.tempLockPassed = true;
+              loginAttemptInfo.attempts = 0; // reset attempts after lock expires
+            }
+
+            // Save updated login attempts
+            saveLoginAttempts(emailPhone, loginAttemptInfo);
+          }
         });
+      });
     </script>
   </body>
 </html>
