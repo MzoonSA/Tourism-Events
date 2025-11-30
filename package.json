@@ -6,7 +6,7 @@
   "scripts": {
     "html-test": "htmlhint . -f json > html-report.json || true",
     "css-test": "stylelint 'css/**/*.css' --formatter json > css-report.json || true",
-    "js-test": "eslint . -f json -o js-report.json || true"
+    "js-test": "eslint '**/*.js' -f json -o js-report.json || true"
   },
   "keywords": [],
   "author": "",
