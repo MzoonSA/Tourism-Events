@@ -1,0 +1,21 @@
+{
+  "name": "tourism-events",
+  "version": "1.0.0",
+  "description": "",
+  "main": "page-load.test.js",
+  "scripts": {
+    "test": "jest",
+    "html-test": "htmlhint .",
+    "css-test": "stylelint '**/*.css'",
+    "js-test": "eslint ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^9.39.1",
+    "htmlhint": "^1.8.0",
+    "jest": "^30.2.0",
+    "stylelint": "^16.26.1"
+  }
+}
