@@ -4,10 +4,10 @@
   "description": "",
   "main": "page-load.test.js",
   "scripts": {
-    "test": "jest",
-    "html-test": "htmlhint . || true",
-    "css-test": "stylelint '**/*.css' || true",
-    "js-test": "eslint . || true"
+   
+    "html-test": "htmlhint . -f json > html-report.json || true",
+    "css-test": "stylelint '**/*.css' --formatter json > css-report.json || true",
+    "js-test": "eslint . -f json -o js-report.json || true"
   },
   "keywords": [],
   "author": "",

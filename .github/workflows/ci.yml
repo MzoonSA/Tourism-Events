@@ -25,3 +25,12 @@ jobs:
 
       - name: JS Lint
         run: npm run js-test
+
+      - name: Upload Test Reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports
+          path: |
+            html-report.json
+            css-report.json
+            js-report.json
