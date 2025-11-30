@@ -2,6 +2,7 @@
   "name": "tourism-events",
   "version": "1.0.0",
   "devDependencies": {
+    "@lhci/cli": "^0.15.1",
     "eslint": "^8.57.1",
     "htmlhint": "^1.8.0",
     "stylelint": "^16.26.1",
@@ -10,7 +11,8 @@
   "scripts": {
     "html-test": "htmlhint . -f json > html-report.json || true",
     "css-test": "stylelint 'assets/**/*.css' --formatter json > css-report.json || true",
-    "js-test": "eslint 'assets/**/*.js' -c .eslintrc.json -f json -o js-report.json || true"
+    "js-test": "eslint 'assets/**/*.js' -c .eslintrc.json -f json -o js-report.json || true",
+    "perf-test": "lhci autorun --collect.url=http://localhost:5500/index.html --upload.target=temporary-public-storage"
   },
   "stylelint": {
     "extends": "stylelint-config-standard",
