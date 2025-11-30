@@ -1,21 +1,37 @@
 {
   "name": "tourism-events",
   "version": "1.0.0",
-  "description": "",
-  "main": "page-load.test.js",
+  "devDependencies": {
+    "eslint": "^9.39.1",
+    "htmlhint": "^1.8.0",
+    "stylelint": "^16.26.1",
+    "stylelint-config-standard": "^30.0.0"
+  },
   "scripts": {
     "html-test": "htmlhint . -f json > html-report.json || true",
     "css-test": "stylelint 'assets/**/*.css' --formatter json > css-report.json || true",
     "js-test": "eslint 'assets/**/*.js' -f json -o js-report.json || true"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "eslint": "^9.39.1",
-    "htmlhint": "^1.8.0",
-    "jest": "^30.2.0",
-    "stylelint": "^16.26.1",
-    "stylelint-config-standard": "^39.0.1"
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "rules": {
+      "block-no-empty": true,
+      "color-no-invalid-hex": true
+    }
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2021": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "ecmaVersion": 12,
+      "sourceType": "module"
+    },
+    "rules": {
+      "no-unused-vars": "warn",
+      "no-undef": "warn"
+    }
   }
 }
