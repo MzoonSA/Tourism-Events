@@ -8,10 +8,10 @@
     "stylelint-config-standard": "^30.0.1"
   },
   "scripts": {
-    "html-test": "htmlhint . -f json > html-report.json || true",
-    "css-test": "stylelint 'assets/**/*.css' --formatter json > css-report.json || true",
-    "js-test": "eslint 'assets/**/*.js' -c .eslintrc.json -f json -o js-report.json || true"
-  },
+  "html-test": "htmlhint . -f json > html-report.json || true",
+  "css-test": "stylelint 'assets/**/*.css' --formatter json > css-report.json || true",
+  "js-test": "eslint 'assets/**/*.js' -c .eslintrc.json -f json -o js-report.json || true"
+},
   "stylelint": {
     "extends": "stylelint-config-standard",
     "rules": {
