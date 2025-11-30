@@ -12,7 +12,7 @@
     "html-test": "htmlhint . -f json > html-report.json || true",
     "css-test": "stylelint 'assets/**/*.css' --formatter json > css-report.json || true",
     "js-test": "eslint 'assets/**/*.js' -c .eslintrc.json -f json -o js-report.json || true",
-    "perf-test": "lhci autorun --collect.url=http://localhost:5500/index.html --upload.target=temporary-public-storage"
+    "perf-test": "lhci autorun --collect.url=http://orange-space-bassoon-pjpgqg6pq4rp2r9px-5503.app.github.dev/ --upload.target=temporary-public-storage"
   },
   "stylelint": {
     "extends": "stylelint-config-standard",
