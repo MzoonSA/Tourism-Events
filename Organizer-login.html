@@ -1,241 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Organizer Login / Sign Up</title>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Organizer Login / Sign Up</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/css/font-awesome.css" />
+  <link rel="stylesheet" href="assets/css/TourismEvents-CSS.css" />
+  <link rel="stylesheet" href="assets/css/owl-carousel.css" />
+  <link rel="stylesheet" href="assets/css/lightbox.css" />
+  <link rel="stylesheet" href="assets/css/login-style.css" />
 
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
-
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/font-awesome.css" />
-    <link rel="stylesheet" href="assets/css/TourismEvents-CSS.css" />
-    <link rel="stylesheet" href="assets/css/owl-carousel.css" />
-    <link rel="stylesheet" href="assets/css/lightbox.css" />
-    <link rel="stylesheet" href="assets/css/login-style.css" />
-
-    <style>
-      body {
-        font-family: "Poppins", sans-serif;
-        margin: 40px;
-      }
-
-      .container {
-        max-width: 400px;
-        margin: auto;
-      }
-
-      input,
-      button {
-        width: 100%;
-        padding: 10px;
-        margin: 10px 0;
-      }
-
-      .tabs {
-        display: flex;
-        justify-content: space-between;
-      }
-
-      .tabs button {
-        width: 48%;
-      }
-
-      #signupForm {
-        display: none;
-      }
-
-      .login-link {
-        text-align: right;
-        margin: 10px 20px;
-      }
-
-      .login-link a {
-        text-decoration: none;
-        color: #007bff;
-        font-weight: bold;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="tabs">
-        <button onclick="showForm('login')">Login</button>
-        <button onclick="showForm('signup')">Sign Up</button>
-      </div>
-
-      <!-- Login Form -->
-      <form id="loginForm">
-        <h2>Organizer Login</h2>
-        <input
-          type="text"
-          id="loginEmailPhone"
-          placeholder="Email or Phone"
-          required
-        />
-        <input
-          type="password"
-          id="loginPassword"
-          placeholder="Password"
-          required
-        />
-        <button type="submit">Login</button>
-        <div id="loginError" style="color: red; margin-top: 10px"></div>
-      </form>
-
-      <!-- Sign Up Form -->
-      <form id="signupForm">
-        <h2>Sign Up</h2>
-        <input type="text" id="signupName" placeholder="Full Name" required />
-        <input type="email" id="signupEmail" placeholder="Email" required />
-        <input
-          type="tel"
-          id="signupPhone"
-          placeholder="Phone"
-          required
-          pattern="^\+?\d{10,15}$"
-          title="Enter a valid phone number (10 to 15 digits, optional + at start)"
-        />
-        <input
-          type="password"
-          id="signupPassword"
-          placeholder="Password"
-          required
-          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}"
-          title="Must contain at least one number, one uppercase and one lowercase letter, one special character (!@#$%^&*), and at least 8 or more characters"
-        />
-        <button type="submit">Sign Up</button>
-      </form>
-      <p id="signupError" style="color: red"></p>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 40px;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+    }
+    input,
+    button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+    .tabs {
+      display: flex;
+      justify-content: space-between;
+    }
+    .tabs button {
+      width: 48%;
+    }
+    #signupForm {
+      display: none;
+    }
+    .login-link {
+      text-align: right;
+      margin: 10px 20px;
+    }
+    .login-link a {
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="tabs">
+      <button onclick="showForm('login')">Login</button>
+      <button onclick="showForm('signup')">Sign Up</button>
     </div>
 
-    <script>
-      function showForm(type) {
-        document.getElementById("loginForm").style.display =
-          type === "login" ? "block" : "none";
-        document.getElementById("signupForm").style.display =
-          type === "signup" ? "block" : "none";
+    <!-- Login Form -->
+    <form id="loginForm">
+      <h2>Organizer Login</h2>
+      <input
+        type="text"
+        id="loginEmailPhone"
+        placeholder="Email or Phone"
+        required
+      />
+      <input
+        type="password"
+        id="loginPassword"
+        placeholder="Password"
+        required
+      />
+      <button type="submit">Login</button>
+      <div id="loginError" style="color: red; margin-top: 10px"></div>
+    </form>
+
+    <!-- Sign Up Form -->
+    <form id="signupForm">
+      <h2>Sign Up</h2>
+      <input type="text" id="signupName" placeholder="Full Name" required />
+      <input type="email" id="signupEmail" placeholder="Email" required />
+      <input
+        type="tel"
+        id="signupPhone"
+        placeholder="Phone"
+        required
+        pattern="^\+?\d{10,15}$"
+        title="Enter a valid phone number (10 to 15 digits, optional + at start)"
+      />
+      <input
+        type="password"
+        id="signupPassword"
+        placeholder="Password"
+        required
+        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}"
+        title="Must contain at least one number, one uppercase and one lowercase letter, one special character (!@#$%^&*), and at least 8 or more characters"
+      />
+      <button type="submit">Sign Up</button>
+      <p id="signupError" style="color: red"></p>
+    </form>
+  </div>
+
+  <script>
+    // Show login or signup form based on tab click
+    function showForm(type) {
+      document.getElementById("loginForm").style.display =
+        type === "login" ? "block" : "none";
+      document.getElementById("signupForm").style.display =
+        type === "signup" ? "block" : "none";
+      // Clear errors on switch
+      document.getElementById("loginError").textContent = "";
+      document.getElementById("signupError").textContent = "";
+    }
+
+    // Encryption & Decryption (demo)
+    function encryptPassword(password) {
+      return btoa(password);
+    }
+
+    function decryptPassword(encrypted) {
+      try {
+        return atob(encrypted);
+      } catch {
+        return "";
       }
+    }
 
-      document.addEventListener("DOMContentLoaded", () => {
-        const form = document.getElementById("signupForm");
-        const emailInput = document.getElementById("signupEmail");
-        const phoneInput = document.getElementById("signupPhone");
-        const passwordInput = document.getElementById("signupPassword");
+    // Load organizers from localStorage
+    function loadOrganizers() {
+      const data = localStorage.getItem("organizers");
+      return data ? JSON.parse(data) : [];
+    }
 
-        form.addEventListener("submit", (e) => {
-          // Clear previous custom messages
-          emailInput.setCustomValidity("");
-          phoneInput.setCustomValidity("");
-          passwordInput.setCustomValidity("");
+    // Save organizers to localStorage
+    function saveOrganizers(organizers) {
+      localStorage.setItem("organizers", JSON.stringify(organizers));
+    }
 
-          // Phone validation: use pattern attribute, but add custom message if needed
-          if (!phoneInput.checkValidity()) {
-            phoneInput.setCustomValidity(
-              "Enter a valid phone number (10 to 15 digits, optional + at start)."
-            );
+    // Login attempts info storage per user
+    function loadLoginAttempts(key) {
+      const data = localStorage.getItem("loginAttempts_" + key);
+      return data ? JSON.parse(data) : { attempts: 0, lockedUntil: 0, tempLockPassed: false };
+    }
+    function saveLoginAttempts(key, info) {
+      localStorage.setItem("loginAttempts_" + key, JSON.stringify(info));
+    }
+
+    const MAX_ATTEMPTS_BEFORE_LOCK = 3;
+    const LOCK_TIME_1_MIN = 60 * 1000;
+    const LOCK_TIME_5_MIN = 5 * 60 * 1000;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Sign Up form handling
+      const signupForm = document.getElementById("signupForm");
+      const emailInput = document.getElementById("signupEmail");
+      const phoneInput = document.getElementById("signupPhone");
+      const passwordInput = document.getElementById("signupPassword");
+      const signupError = document.getElementById("signupError");
+
+      signupForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        emailInput.setCustomValidity("");
+        phoneInput.setCustomValidity("");
+        passwordInput.setCustomValidity("");
+        signupError.textContent = "";
+
+        // Phone validation pattern check
+        if (!phoneInput.checkValidity()) {
+          phoneInput.setCustomValidity(
+            "Enter a valid phone number (10 to 15 digits, optional + at start)."
+          );
+        }
+
+        if (!signupForm.checkValidity()) {
+          signupForm.reportValidity();
+          return;
+        }
+
+        let organizers = loadOrganizers();
+        const name = document.getElementById("signupName").value.trim();
+        const email = emailInput.value.trim();
+        const phone = phoneInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        // Check if email or phone exists
+        const exists = organizers.some(
+          (org) => org.email === email || org.phone === phone
+        );
+        if (exists) {
+          signupError.textContent = "Email or phone number already taken.";
+          return;
+        }
+
+        // Encrypt password before saving
+        const encryptedPassword = encryptPassword(password);
+
+        organizers.push({
+          name,
+          email,
+          phone,
+          password: encryptedPassword,
+        });
+
+        saveOrganizers(organizers);
+
+        alert("Sign up successful! You can now login.");
+        signupForm.reset();
+        showForm("login");
+      });
+
+      // Login form handling
+      const loginForm = document.getElementById("loginForm");
+      const loginError = document.getElementById("loginError");
+
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        loginError.style.color = "red";
+        loginError.textContent = "";
+
+        const emailPhone = document.getElementById("loginEmailPhone").value.trim();
+        const password = document.getElementById("loginPassword").value.trim();
+
+        if (!emailPhone || !password) {
+          loginError.textContent = "Please fill all fields.";
+          return;
+        }
+
+        let loginAttemptInfo = loadLoginAttempts(emailPhone);
+        const now = Date.now();
+
+        // Check lock
+        if (loginAttemptInfo.lockedUntil && loginAttemptInfo.lockedUntil > now) {
+          const waitSeconds = Math.ceil((loginAttemptInfo.lockedUntil - now) / 1000);
+          loginError.textContent = `Too many failed attempts. Try again in ${waitSeconds} seconds.`;
+          return;
+        }
+
+        let organizers = loadOrganizers();
+        const organizer = organizers.find(
+          (org) => org.email === emailPhone || org.phone === emailPhone
+        );
+
+        if (!organizer) {
+          loginError.textContent = "User not found.";
+          return;
+        }
+
+        const decryptedPassword = decryptPassword(organizer.password);
+        if (decryptedPassword === password) {
+          // Success: reset attempts
+          loginAttemptInfo = { attempts: 0, lockedUntil: 0, tempLockPassed: false };
+          saveLoginAttempts(emailPhone, loginAttemptInfo);
+
+          loginError.style.color = "green";
+          loginError.textContent = "Login successful!";
+
+           // حفظ المستخدم الحالي كـ "activeOrganizer"
+           localStorage.setItem("activeOrganizer", JSON.stringify(organizer));
+
+          // تحويل المستخدم مباشرة للـ Dashboard
+          window.location.href = "OrganizerDashboard.html";
+        } else {
+          // Wrong password: increase attempts
+          loginAttemptInfo.attempts = (loginAttemptInfo.attempts || 0) + 1;
+
+          if (
+            loginAttemptInfo.attempts > MAX_ATTEMPTS_BEFORE_LOCK &&
+            !loginAttemptInfo.tempLockPassed
+          ) {
+            loginAttemptInfo.lockedUntil = now + LOCK_TIME_1_MIN;
+            loginError.textContent = "Too many failed attempts. Try again in 1 minute.";
+          } else if (
+            loginAttemptInfo.attempts > MAX_ATTEMPTS_BEFORE_LOCK &&
+            loginAttemptInfo.tempLockPassed
+          ) {
+            loginAttemptInfo.lockedUntil = now + LOCK_TIME_5_MIN;
+            loginError.textContent = "Too many failed attempts again. Try again in 5 minutes.";
+          } else {
+            loginError.textContent = `Wrong password. Attempts: ${loginAttemptInfo.attempts}`;
           }
 
-          // Password validation uses pattern attribute and title for message automatically
-
-          // Check validity and show messages
-          if (!form.checkValidity()) {
-            e.preventDefault();
-            form.reportValidity();
+          if (
+            loginAttemptInfo.lockedUntil &&
+            loginAttemptInfo.lockedUntil <= now &&
+            !loginAttemptInfo.tempLockPassed
+          ) {
+            loginAttemptInfo.tempLockPassed = true;
+            loginAttemptInfo.attempts = 0;
           }
-        });
+
+          saveLoginAttempts(emailPhone, loginAttemptInfo);
+        }
       });
-      document
-        .getElementById("loginForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-
-          const emailPhone = document
-            .getElementById("loginEmailPhone")
-            .value.trim();
-          const password = document
-            .getElementById("loginPassword")
-            .value.trim();
-          const errorDiv = document.getElementById("loginError");
-          errorDiv.style.color = "red";
-          errorDiv.textContent = ""; // Clear previous errors
-
-          fetch("assets/data/Organizer-Data.json")
-            .then((response) => {
-              if (!response.ok) {
-                throw new Error("Failed to load user data.");
-              }
-              return response.json();
-            })
-            .then((users) => {
-              const user = users.find(
-                (u) => u.email === emailPhone || u.phone === emailPhone
-              );
-
-              if (!user || user.password !== password) {
-                errorDiv.textContent = "Wrong email, phone, or password.";
-              } else {
-                errorDiv.style.color = "green";
-                errorDiv.textContent = "Login successful!";
-              }
-            })
-            .catch((error) => {
-              errorDiv.textContent = "Could not load user data.";
-            });
-        });
-
-      document.addEventListener("DOMContentLoaded", () => {
-        const form = document.getElementById("signupForm");
-        const emailInput = document.getElementById("signupEmail");
-        const phoneInput = document.getElementById("signupPhone");
-        const passwordInput = document.getElementById("signupPassword");
-        const signupError = document.getElementById("signupError");
-
-        form.addEventListener("submit", (e) => {
-          e.preventDefault();
-
-          emailInput.setCustomValidity("");
-          phoneInput.setCustomValidity("");
-          passwordInput.setCustomValidity("");
-          signupError.textContent = "";
-
-          fetch("assets/data/Organizer-Data.json")
-            .then((response) => {
-              if (!response.ok) {
-                throw new Error("Failed to load user data.");
-              }
-              return response.json();
-            })
-            .then((users) => {
-              const email = emailInput.value.trim();
-              const phone = phoneInput.value.trim();
-
-              const exists = users.some(
-                (user) => user.email === email || user.phone === phone
-              );
-
-              if (exists) {
-                signupError.textContent =
-                  "Email or phone number already taken.";
-                return;
-              }
-
-              if (!form.checkValidity()) {
-                form.reportValidity();
-              } else {
-                alert("Signup successful!");
-                form.reset();
-              }
-            })
-            .catch(() => {
-              signupError.textContent = "Could not validate user data.";
-            });
-        });
-      });
-    </script>
-  </body>
+    });
+  </script>
+</body>
 </html>

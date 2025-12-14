@@ -434,6 +434,63 @@
                   </div> 
                 </div> 
               </div> 
+
+              <!-- ********* أحداث المنظم العامة ********* -->
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+
+    // تنظيف الأحداث المحذوفة تلقائياً
+(function cleanDeletedEvents() {
+    const createdEvents = JSON.parse(localStorage.getItem("createdEvents") || "[]");
+    let publicEvents = JSON.parse(localStorage.getItem("publicEvents") || "[]");
+
+    // احذف أي حدث موجود في publicEvents لكنه غير موجود في createdEvents
+    publicEvents = publicEvents.filter(pubEvent => 
+        createdEvents.some(crEvent => crEvent.name === pubEvent.name && crEvent.date === pubEvent.date)
+    );
+
+    // حفظ النسخة النظيفة
+    localStorage.setItem("publicEvents", JSON.stringify(publicEvents));
+})();
+
+    const events = JSON.parse(localStorage.getItem("publicEvents") || "[]");
+    const container = document.querySelector('.filters-content .row.grid'); // نفس مكان الكروت الأخرى
+
+    if (container) {
+        events.forEach(ev => {
+            const colDiv = document.createElement("div");
+            // إضافة الكلاس المناسب للفئة عشان الفلتر يشتغل
+            colDiv.classList.add("col-lg-4", "col-md-4", "col-sm-6", "col-xs-12", "all", ev.category);
+
+            colDiv.innerHTML = `
+                <div class="item">
+                    <div class="hover-container">
+                        <a href="${ev.image}" data-lightbox="image-1" data-title="${ev.name}">
+                            <img src="${ev.image}" alt="${ev.name}">
+                        </a>
+                        <div class="overlay">
+                            <div class="hover-text">
+                                ${ev.name}<br><br>
+                                ${ev.desc ? ev.desc + '<br><br>' : ''}
+                                <a href="#" class="main-filled-button">More details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            container.appendChild(colDiv);
+        });
+
+        // بعد الإضافة، تحديث Isotope للفلترة
+        if (typeof Isotope !== 'undefined') {
+            const $grid = $('.filters-content .row.grid').isotope();
+            $grid.isotope('reloadItems').isotope({ sortBy: 'original-order' });
+        }
+    }
+});
+</script> <!-- ***** نهاية اضافة فعاليات المنظم ***** -->
+
     </section>
     <!-- ***** Event Area Ends ***** -->
     
@@ -529,11 +586,8 @@
     }
   });
 </script>
-<!---
-  window.addEventListener('load', updateNavbarColor);
-  window.addEventListener('hashchange', updateNavbarColor);
--->
-</script>
-    
+
+
+
   </body>
 </html>

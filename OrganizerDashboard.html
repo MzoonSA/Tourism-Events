@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organizer Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"> 
+
+
+  <style>
+    body { 
+      font-family: "Roboto", sans-serif; 
+      background-image: url(assets/images/slide-03.jpg);
+      background-size: cover;
+      background-position: center;
+    }
+
+    .dashboard-container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .dashboard-header h2 {
+      margin: 0 auto;
+     /* text-align: center;*/
+      margin-right: 175px; /*محاذاة العنوان لليمين*/
+      margin-top: 50px; /* نزول العنوان قليلاً للأسفل */
+    }
+
+
+    .dashboard-header button {
+      cursor: pointer;
+      background-color: #888888;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+
+      margin-top: -30px;   /* يرفعه فوق */
+      margin-right: 20px; /* يحركه يسار */
+    }
+
+    .dashboard-header button:hover {
+      opacity: 0.85;
+      transform: scale(1.05);
+    }
+
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .action-buttons button,
+    #addEventSection button,
+    .my-event-card button {
+      background-color: #888888;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .action-buttons button:hover,
+    #addEventSection button:hover,
+    .my-event-card button:hover {
+      opacity: 0.85;
+      transform: scale(1.05);
+    }
+
+    /* عنوان Add Event يبقى يسار */
+    #addEventSection h3 {
+      text-align: left;
+      margin-bottom: 15px;
+    }
+
+    .event-img-option {
+      width: 120px;
+      height: 80px;
+      object-fit: cover;
+      border: 2px solid transparent;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    .event-img-option.selected {
+      border-color: #1976d2;
+    }
+
+    .my-event-card img {
+      width: 150px;
+    }
+
+    /* الجدول Edit/Delete */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+
+    table th {
+      background-color: #f0f0f0;
+    }
+
+    #editDeleteSection {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="dashboard-container">
+
+  <div class="dashboard-header">
+    <h2>Organizer Dashboard</h2>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <div class="action-buttons">
+    <button onclick="showSection('add')">Add Event</button>
+    <button onclick="showSection('editDelete')">Edit/Delete Events</button>
+  </div>
+
+  <!-- ADD EVENT SECTION -->
+  <div id="addEventSection">
+    <h3>Add New Event</h3>
+
+    <label>Event Name</label>
+    <input id="eventName" class="form-control">
+
+    <label>Description</label>
+    <textarea id="eventDesc" class="form-control"></textarea>
+
+    <label>Category</label>
+    <select id="eventCategory" class="form-control">
+      <option>Music</option>
+      <option>Art</option>
+      <option>Workshop</option>
+      <option>Fashion</option>
+      <option>Food</option>
+    </select>
+
+    <label>Date</label>
+    <input type="date" id="eventDate" class="form-control">
+
+    <label>Location</label>
+    <input type="text" id="eventLocation" class="form-control" placeholder="Enter location (Google Maps link optional)">
+
+    <br>
+    <label>Choose an event image:</label><br>
+    <input type="file" id="eventImageUpload" accept="image/*">
+    <div id="previewImages" style="margin-top:10px;"></div>
+
+    <br>
+    <button onclick="addEvent()">Submit</button>
+  </div>
+
+  <!-- EDIT/DELETE EVENTS SECTION -->
+  <div id="editDeleteSection">
+    <h3>Events</h3>
+    <div id="eventsTableContainer"></div>
+  </div>
+
+</div>
+
+<script>
+  let selectedImage = "";
+
+  document.getElementById('eventImageUpload').addEventListener('change', function(e){
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e){
+      selectedImage = e.target.result;
+      document.getElementById('previewImages').innerHTML = `<img src="${selectedImage}" class="event-img-option selected">`;
+    }
+    reader.readAsDataURL(file);
+  });
+
+  function showSection(section) {
+    document.getElementById("addEventSection").style.display = section === "add" ? "block" : "none";
+    document.getElementById("editDeleteSection").style.display = section === "editDelete" ? "block" : "none";
+    if(section === "editDelete") showEventsTable();
+  }
+
+function addEvent() {
+    const name = document.getElementById("eventName").value.trim();
+    const desc = document.getElementById("eventDesc").value.trim();
+    const category = document.getElementById("eventCategory").value;
+    const date = document.getElementById("eventDate").value;
+    const location = document.getElementById("eventLocation").value;
+
+    if(!name || !desc || !selectedImage || !date || !location) {
+      alert("Please fill all fields and select/upload an image.");
+      return;
+    }
+
+    // خريطة الفئات للفلترة
+    const categoryMap = {
+      "Music": "mus",
+      "Art": "art",
+      "Workshop": "ws",
+      "Fashion": "fash",
+      "Food": "fad"
+    };
+
+    // الحصول على class المناسب للفلترة
+    let catClass = categoryMap[category];
+
+    // تخزين الحدث في createdEvents
+    let events = JSON.parse(localStorage.getItem("createdEvents") || "[]");
+    events.push({
+        name,
+        desc,
+        category: catClass, // الفئة المحولة للكلاس
+        date,
+        location,
+        image: selectedImage
+    });
+    localStorage.setItem("createdEvents", JSON.stringify(events));
+
+    // تخزين نسخة عامة للعرض في الموقع (publicEvents)
+    let publicEvents = JSON.parse(localStorage.getItem("publicEvents") || "[]");
+    publicEvents.push({
+        name,
+        desc,
+        category: catClass, // نفس الكلاس للفلترة
+        date,
+        location,
+        image: selectedImage
+    });
+    localStorage.setItem("publicEvents", JSON.stringify(publicEvents));
+
+    alert("Event Added!");
+
+    // إعادة تعيين الحقول
+    document.getElementById("eventName").value = "";
+    document.getElementById("eventDesc").value = "";
+    document.getElementById("eventDate").value = "";
+    document.getElementById("eventLocation").value = "";
+    selectedImage = "";
+    document.getElementById('previewImages').innerHTML = "";
+}
+
+
+
+  function showEventsTable() {
+    const events = JSON.parse(localStorage.getItem("createdEvents") || "[]");
+    const container = document.getElementById("eventsTableContainer");
+    if(events.length === 0) {
+      container.innerHTML = "<p>No events available.</p>";
+      return;
+    }
+
+    let table = `<table>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Date</th>
+        <th>Location</th>
+        <th>Image</th>
+        <th>Action</th>
+      </tr>`;
+
+    events.forEach((ev, idx) => {
+      table += `<tr>
+        <td>${ev.name}</td>
+        <td>${ev.desc}</td>
+        <td>${ev.category}</td>
+        <td>${ev.date}</td>
+        <td>${ev.location}</td>
+        <td><img src="${ev.image}" width="100"></td>
+        <td>
+        <button class="btn btn-sm btn-warning" onclick="editEvent(${idx})">
+        <i class="bi bi-pencil-fill"></i>
+        </button>
+        <button class="btn btn-sm btn-danger" onclick="deleteEvent(${idx})">
+        <i class="bi bi-trash-fill"></i>
+        </button>
+        </td>
+
+      </tr>`;
+    });
+
+    table += "</table>";
+    container.innerHTML = table;
+  }
+
+  function editEvent(idx){
+    const events = JSON.parse(localStorage.getItem("createdEvents") || "[]");
+    const ev = events[idx];
+    showSection('add');
+
+    document.getElementById("eventName").value = ev.name;
+    document.getElementById("eventDesc").value = ev.desc;
+    document.getElementById("eventCategory").value = ev.category;
+    document.getElementById("eventDate").value = ev.date;
+    document.getElementById("eventLocation").value = ev.location;
+    selectedImage = ev.image;
+    document.getElementById('previewImages').innerHTML = `<img src="${selectedImage}" class="event-img-option selected">`;
+
+    deleteEvent(idx, false);
+  }
+
+function deleteEvent(idx, confirmDelete = true){
+    if(confirmDelete && !confirm("Are you sure to delete this event?")) return;
+
+    // حذف من createdEvents
+    let events = JSON.parse(localStorage.getItem("createdEvents") || "[]");
+    const deletedEvent = events.splice(idx, 1)[0]; // حفظ الحدث المحذوف
+    localStorage.setItem("createdEvents", JSON.stringify(events));
+
+    // حذف نفس الحدث من publicEvents
+    let publicEvents = JSON.parse(localStorage.getItem("publicEvents") || "[]");
+    publicEvents = publicEvents.filter(ev => !(ev.name === deletedEvent.name && ev.date === deletedEvent.date));
+    localStorage.setItem("publicEvents", JSON.stringify(publicEvents));
+
+    showEventsTable();
+}
+
+
+  function logout() {
+    localStorage.removeItem("activeOrganizer");
+    window.location.href = "Organizer-login.html";
+  }
+</script>
+
+</body>
+</html> 

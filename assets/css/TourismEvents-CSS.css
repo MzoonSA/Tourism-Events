@@ -1956,27 +1956,37 @@ portfolio
 }
 
 a.main-filled-button {
-  border: 2px solid #444151 !important;
+  border: 2px solid white !important; /* BOOK NOW Border */
   background-color: transparent !important;
   color: white !important;
+  display: inline-block; /* مهم */
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 a.main-filled-button:hover {
-  background-color: #444151 !important;
-  color: white !important;
+  background-color: transparent !important;
+  transform: scale(1.05);
+  opacity: 0.9;
 }
+
+
 
 /* ==== button ==== */
 a.main-stroked-button {
-  border: 2px solid #444151 !important;
+  border: 2px solid white !important; /* SIMILAR EVENTS Border */
   background-color: transparent !important;
   color: white !important;
+  display: inline-block; /* مهم */
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 a.main-stroked-button:hover {
-  background-color: #444151 !important;
-  color: white !important;
+  background-color: transparent !important;
+  transform: scale(1.05); /* أخف من book now */
+  opacity: 0.9;
 }
+
+
 
 .header-area.scrolled-section {
   background-color: #444151 !important;
@@ -2002,7 +2012,7 @@ a.main-stroked-button:hover {
 }
 
 .scroll-down a:hover {
-  box-shadow: 0 0 10px rgba(68, 65, 81, 0.6);
+  box-shadow: 0 0 10px rgba(251, 251, 252, 0.6);
 }
 
 .scroll-down a i {
